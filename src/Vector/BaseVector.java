@@ -4,9 +4,10 @@ public abstract class BaseVector {
 
     public final double[] coords;
     protected final int dimension;
+//    protected int hashcode;
 
-    protected BaseVector(double[] cord) {
-        coords  = cord;
+    protected BaseVector(double... cord) {
+        coords  = cord.clone();
         dimension = cord.length;
     }
 
@@ -33,7 +34,18 @@ public abstract class BaseVector {
         return result;
     }
 
-    protected boolean compareCoordinates(BaseVector anotherVector) {
+//    public boolean compareCoordinates(BaseVector anotherVector) {
+//        for (int i = 0; i < dimension; i++)
+//            if (this.coords[i] != anotherVector.coords[i])
+//                return false;
+//        return true;
+//    }
+
+    @Override
+    public boolean equals(Object another) {
+        if (!this.getClass().getSimpleName().equals(another.getClass().getSimpleName()))
+            return false;
+        BaseVector anotherVector = this.getClass().cast(another);
         for (int i = 0; i < dimension; i++)
             if (this.coords[i] != anotherVector.coords[i])
                 return false;
@@ -41,11 +53,19 @@ public abstract class BaseVector {
     }
 
     @Override
+    public int hashCode() {
+        int hash = dimension ^ (dimension >>> 32);
+        for (int i = 0; i < dimension; i++)
+            hash = 31 * hash + Double.hashCode(coords[i]);
+        return hash;
+    }
+
+    @Override
     public String toString() {
-        String vectroString = "vector dimension = " + dimension + " { ";
+        StringBuilder vectroString = new StringBuilder("vector dimension = " + dimension + " { ");
         for (int i = 0; i < coords.length; i++)
-            vectroString += coords[i] + " ";
-        vectroString += "}";
-        return vectroString;
+            vectroString.append(coords[i] + " ");
+        vectroString.append("}");
+        return vectroString.toString();
     }
 }
