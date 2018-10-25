@@ -2,7 +2,7 @@ package Vector;
 
 public class VectorNd extends BaseVector {
 
-    public VectorNd(double[] cor) {
+    public VectorNd(double... cor) {
         super(cor);
     }
 
@@ -28,9 +28,9 @@ public class VectorNd extends BaseVector {
         throw new IllegalArgumentException("the dimensions of the vectors don't match");
     }
 
-    public boolean compareCoordinates(VectorNd anotherVector) {
+    public boolean equals(VectorNd anotherVector) {
         if (this.dimension == anotherVector.dimension)
-            return super.compareCoordinates(anotherVector);
+            return super.equals(anotherVector);
         throw new IllegalArgumentException("the dimensions of the vectors don't match");
     }
 }

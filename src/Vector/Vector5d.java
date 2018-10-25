@@ -2,12 +2,12 @@ package Vector;
 
 public class Vector5d extends BaseVector {
 
-    public Vector5d(double[] cor) {
-        super(cor);
+    public Vector5d(double x, double y, double z, double a, double b) {
+        super(x, y, z, a, b);
     }
 
     protected Vector5d getVector(double[] newCoords) {
-        return new Vector5d(newCoords);
+        return new Vector5d(newCoords[0], newCoords[1], newCoords[2], newCoords[3], newCoords[4]);
     }
 
     public Vector5d add(Vector5d anotherVector) {
@@ -22,8 +22,8 @@ public class Vector5d extends BaseVector {
         return super.scalarProduct(anotherVector);
     }
 
-    public boolean compareCoordinates(Vector5d anotherVector) {
-        return super.compareCoordinates(anotherVector);
+    public boolean equals(Vector5d anotherVector) {
+        return super.equals(anotherVector);
     }
 
     public String toString() {

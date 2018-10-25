@@ -2,12 +2,12 @@ package Vector;
 
 public class Vector3d extends BaseVector {
 
-    public Vector3d(double[] cor) {
-        super(cor);
+    public Vector3d(double x, double y, double z) {
+        super(x, y, z);
     }
 
     protected Vector3d getVector(double[] newCoords) {
-        return new Vector3d(newCoords);
+        return new Vector3d(newCoords[0], newCoords[1], newCoords[2]);
     }
 
     public Vector3d add(Vector3d anotherVector) {
@@ -22,8 +22,8 @@ public class Vector3d extends BaseVector {
         return super.scalarProduct(anotherVector);
     }
 
-    public boolean compareCoordinates(Vector3d anotherVector) {
-        return super.compareCoordinates(anotherVector);
+    public boolean equals(Vector3d anotherVector) {
+        return super.equals(anotherVector);
     }
 
     public String toString() {
